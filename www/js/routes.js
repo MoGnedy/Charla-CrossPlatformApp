@@ -26,7 +26,7 @@ angular.module('ChatApp').config(function($stateProvider) {
     views:{
       "pageContent":{
         templateUrl:"templates/about.html",
-      },
+      }
 
     }
   })

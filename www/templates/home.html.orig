@@ -1,0 +1,26 @@
+<<<<<<< HEAD
+
+<ion-view>
+	<ion-content class="homepage">
+	<div class="overlay">
+	<div class="contents">
+		<h1>Welcome To ChatApp</h1>
+		<button class="button button-block button-energized"  ui-sref="signup">Register</button>
+		<button class="button button-block button-balanced" ui-sref="login">Login</button>
+</div>
+</div>
+</ion-content>
+=======
+<ion-view>
+
+  <!-- <ion-content > -->
+    <ion-nav-view name="pageContent">
+
+    </ion-nav-view>
+
+
+
+
+  <!-- </ion-content> -->
+>>>>>>> 14c3d512b0111b14ac26cdb2cfa069f85458b45c
+</ion-view>
