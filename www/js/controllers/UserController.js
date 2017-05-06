@@ -14,22 +14,28 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
         };
 $scope.userLogin = function (valid) {
   console.log(valid);
-   valid = valid && !$scope.myerrors.password_len && $scope.user.username;
+  //  valid = valid && !$scope.myerrors.password_len && $scope.user.username;
             if(valid) {
-                $scope.dataresult=users.checkUserData($scope.user);
+              console.log(valid);
+                $scope.dataresult=users.checkUserData($scope.user).then(function(res) {
+                  console.log(res);
+                  console.log(res.userdata);
+                  $scope.dataresult = res.userdata;
+                  
+                  if (res.userdata) {
+                    $state.go('app.users');
+                  } else {
+                    console.log($scope.myerrors);
+                  }
+
+                });
                 // console.log($scope.userCheck)
-                $rootScope.root_user = $scope.user;
+                $rootScope.root_user = $scope.dataresult;
                 // console.log($scop.dataresult);
-                if(false){
-                $state.go('app.users');}
-            } else {
-                console.log($scope.myerrors);
-            }
 
-
+                }
 }
 
-        
         $scope.validetor = {
           'match': function() {
             console.log($scope.user.password);
