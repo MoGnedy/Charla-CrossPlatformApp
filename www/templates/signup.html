@@ -19,25 +19,21 @@
     <p ng-if="signupForm.email.$error.required && submitted">Email is required</p>
     <p ng-if="signupForm.email.$error.email && submitted">Enter valid email</p>
 
-    
 
-    <input type="password" name="pw" ng-model="user.pw" ng-change="validetor.pwLen()" placeholder="Password" required>
-    <p ng-if="signupForm.pw.$error.required && submitted">Password is required</p>
-    <p ng-if="myerrors.pw_len && submitted">Password is too short</p>
 
-    <input type="password" name="re_pw" ng-model="re_pw" ng-change="validetor.match()" placeholder="Re-Type Password" required>
-    <p ng-if="signupForm.re_pw.$error.required && submitted">Please re-type your password</p>
-    <p ng-if="myerrors.re_pw && submitted">Passwords don't match</p>
+    <input type="password" name="password" ng-model="user.password" ng-change="validetor.pwLen()" placeholder="Password" required>
+    <p ng-if="signupForm.password.$error.required && submitted">Password is required</p>
+    <p ng-if=" !myerrors.password_len && submitted">Password is too short</p>
+
+    <input type="password" name="re_password" ng-model="re_password" ng-change="validetor.match()" placeholder="Re-Type Password" required>
+    <p ng-if="signupForm.re_password.$error.required && submitted">Please re-type your password</p>
+    <p ng-if=" myerrors.re_password && submitted">Passwords don't match</p>
 
     <button class="button button-block button-positive">Sign Up</button>
   </form>
   		</div>
 		</div>
-  		</div>	
+  		</div>
 
   </ion-content>
 </ion-view>
-
-
-
-

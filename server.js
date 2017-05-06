@@ -11,6 +11,7 @@ var messages=[];
 var users=[];
 var Mydb;
 var Client;
+var user_data;
 //middlewares
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/www', express.static(__dirname + '/public'));
@@ -32,15 +33,17 @@ app.get('/', function(request, response) {
 app.post("/api/users",function(request,response){
     var users =  Mydb.collection('users').find().toArray(function(err,users){
 
-    response.send(users);
+  response.send(users);
   response.send({status:1});
     });
 
 })
 
 app.post('/api/signup', function(request, response) {
+  console.log(request.body);
   if(request.body.username && request.body.email && request.body.password)
  {
+
 
    Mydb.collection('users').save(request.body,function(err,res){
 
@@ -52,16 +55,14 @@ app.post('/api/signup', function(request, response) {
 
 })
 app.post('/api/login', function(request, response) {
-
-Mydb.collection('users').find({'email':request.body.email,'password':request.body.pw}).toArray(function(err,res){
+console.log(request.body);
+Mydb.collection('users').find({'email':request.body.email,'password':request.body.password}).toArray(function(err,res){
 
 console.log(res);
 users.push(res[0]);
-
+// user_data = res;
+response.send({status:1,userdata:res[0]});
 });
-	response.send({status:1});
-})
-
 
 
 app.get('*', function(request, response) {
