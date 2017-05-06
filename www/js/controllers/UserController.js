@@ -44,10 +44,11 @@ $scope.myerrors={};
                 $scope.signUp = function(valid) {
             valid = valid && !$scope.myerrors.pw_len && !$scope.myerrors.mob && !$scope.myerrors.re_pw;
             if(valid) {
-                $scope.dataresult=users.sendUserData($scope.user);
+                $scope.dataresult=users.regUserData($scope.user);
                 $rootScope.root_user = $scope.user;
-                if(){
-                $state.go('login');}
+                console.log($scop.dataresult);
+                if(false){
+                $state.go('app.users');}
             } else {
                 console.log($scope.myerrors);
             }
