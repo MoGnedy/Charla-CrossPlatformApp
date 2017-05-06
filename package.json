@@ -2,6 +2,11 @@
   "name": "simplecrossplatformapp",
   "version": "1.1.1",
   "description": "SimpleCrossPlatformApp: An Ionic project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -10,9 +15,15 @@
     "gulp-rename": "^1.2.0"
   },
   "devDependencies": {
+    "body-parser": "^1.17.1",
+    "bootstrap": "^4.0.0-alpha.6",
     "bower": "^1.3.3",
+    "express": "^4.15.2",
     "gulp-util": "^2.2.14",
-    "shelljs": "^0.3.0"
+    "mongo": "^0.1.0",
+    "nodemon": "^1.11.0",
+    "shelljs": "^0.3.0",
+    "socket.io": "^1.7.3"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",

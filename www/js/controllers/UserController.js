@@ -5,8 +5,9 @@ $scope.inerr = false;
 $scope.inerrmsg = "message";
 $scope.userLogin = function () {
   if($scope.user['email'] && $scope.user['password']){
-
-    if ( users.sendUserData($scope.user).length ){
+    $scope.userCheck = users.checkUserData($scope.user);
+    console.log($scope.userCheck);
+    if ( $scope.userCheck.length  ){
   $state.go('app.users');
   }else {
     $scope.err = true;
@@ -43,10 +44,11 @@ $scope.myerrors={};
                 $scope.signUp = function(valid) {
             valid = valid && !$scope.myerrors.pw_len && !$scope.myerrors.mob && !$scope.myerrors.re_pw;
             if(valid) {
-                $scope.dataresult=users.sendUserData($scope.user);
+                $scope.dataresult=users.regUserData($scope.user);
                 $rootScope.root_user = $scope.user;
-              
-                $state.go('login');
+                console.log($scop.dataresult);
+                if(false){
+                $state.go('app.users');}
             } else {
                 console.log($scope.myerrors);
             }

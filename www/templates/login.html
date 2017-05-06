@@ -1,7 +1,8 @@
-<ion-view view-title="Login">
-<ion-content>
-<div ></div>
-<div>
+<ion-view view-title="login">
+<ion-content class="homepage">
+<div class="overlay">
+<div class="contents">
+
 <form name="userLoginForm" ng-submit="userLogin(userLoginForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
 
     <div class="list">
@@ -41,6 +42,7 @@
     </label>
   </div> -->
 </form>
+</div>
 </div>
   </ion-content>
     </ion-view>
