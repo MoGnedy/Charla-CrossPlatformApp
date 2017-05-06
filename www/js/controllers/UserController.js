@@ -1,4 +1,4 @@
-angular.module('ChatApp').controller('user', function($scope, $state, users, $rootScope) {
+angular.module('ChatApp').controller('user', function($scope, $state, users, $rootScope,$timeout) {
       $scope.user = {};
       $scope.myerrors = {};
  $scope.validetor = {
@@ -17,12 +17,13 @@ $scope.userLogin = function (valid) {
   //  valid = valid && !$scope.myerrors.password_len && $scope.user.username;
             if(valid) {
               console.log(valid);
-                $scope.dataresult=users.checkUserData($scope.user).then(function(res) {
+              users.checkUserData($scope.user).then(function(res) {
                   console.log(res);
-                  console.log(res.userdata);
-                  $scope.dataresult = res.userdata;
-                  
-                  if (res.userdata) {
+                  $tim
+
+                  if (res.userdata.length) {
+                    console.log(res.userdata[0]);
+                    $scope.dataresult = res.userdata;
                     $state.go('app.users');
                   } else {
                     console.log($scope.myerrors);

@@ -61,7 +61,7 @@ Mydb.collection('users').find({'email':request.body.email,'password':request.bod
 console.log(res);
 users.push(res[0]);
 // user_data = res;
-response.send({status:1,userdata:res[0]});
+response.send({status:1,userdata:res});
 });
 
 
