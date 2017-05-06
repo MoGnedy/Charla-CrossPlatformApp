@@ -10,31 +10,14 @@ angular.module('ChatApp').config(function($stateProvider) {
       url: '/home',
       templateUrl: "templates/home.html",
 
-<<<<<<< HEAD
+
   })
-  .state('login',{
-    url:'/login',
-  
-  })
-  .state('signup',{
-    url:'/signup',
-     templateUrl:"templates/signup.html",
-        controller:"user",
-      
-  })
-  .state('app.about',{
-    url:'/about',
-    views:{
-      "pageContent":{
-        templateUrl:"templates/about.html",
-      }
-=======
-    })
+ 
     .state('login', {
       url: '/login',
       templateUrl: "templates/login.html",
       controller: "user",
->>>>>>> b5237fa6b168687babe3fc328643273293ddbbee
+
 
     })
     .state('signup', {
