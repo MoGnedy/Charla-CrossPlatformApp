@@ -1,9 +1,46 @@
-<ion-view>
-  <ion-content>
+<ion-view  >
+<ion-content >
+<div ></div>
+<div>
+<form name="userLoginForm" ng-submit="userLogin(userLoginForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="Email" required>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Password</span>
+        <input type="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" required>
+      </label>
+      <label class="item item-input item-floating-label">
+
+        <div class="card bg-assertive" ng-show="err">
+                    <div class="item item-text-wrap" style="background: firebrick;">
+                        <p style="color: cornsilk;">{{errmsg}}</p>
+                    </div>
+                </div>
+
+
+      <button class="button button-block button-balanced">
+       Submit
+     </button>
+   </label>
+    </div>
 
 
 
-
-
+  <!-- <div class="list">
+    <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="email" name="email" ng-model="email">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Password</span>
+      <input type="password" name="password" ng-model="password">
+    </label>
+  </div> -->
+</form>
+</div>
   </ion-content>
-</ion-view>
+    </ion-view>
