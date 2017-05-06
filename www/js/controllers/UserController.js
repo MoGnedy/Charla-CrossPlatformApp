@@ -45,8 +45,8 @@ $scope.myerrors={};
             if(valid) {
                 $scope.dataresult=users.sendUserData($scope.user);
                 $rootScope.root_user = $scope.user;
-                if(){
-                $state.go('login');}
+              
+                $state.go('login');
             } else {
                 console.log($scope.myerrors);
             }

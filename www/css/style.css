@@ -31,18 +31,15 @@ h1{
   color:#fff;
   text-align: center;
 }
-.homePage .item{
+.homepage .item{
   border:0;
 }
-.homePage .item-input{
+.homepage .item-input{
   text-align: left;
   padding-left: 0;
 }
-.homePage .item-input span{
-  color: #fff;
-
 .homepage .item-input span{
-color: #fff;
+  color: #fff;
 }
 
 .homepage input{
