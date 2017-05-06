@@ -1,9 +1,14 @@
 <ion-view>
   <ion-content>
+<label class="item item-input">
+  <span class="input-label" >Username</span>
+  <!-- <input type="text" name="message"  ng-model="message"> -->
 
 
-
-
-
+</label>
+<textarea ng-keypress="updateEditor()" name="message"  ng-model="message.message" id="textar"> </textarea>
+  <button class="button button-balanced" ng-click="sendMessage()">
+  button-balanced
+</button>
   </ion-content>
 </ion-view>

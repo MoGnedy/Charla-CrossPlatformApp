@@ -47,6 +47,7 @@ background: transparent;
 color: #fff;
 border-bottom: 1px solid #fff;
 }
+<<<<<<< HEAD
 .about h2,h3{
 	text-align: center;
 
@@ -58,9 +59,11 @@ border-bottom: 1px solid #fff;
     padding-left: 20px;
     
 }
+=======
 .popup-head{
   background: #ef473a;
 }
 .popup-head h3,.popup-head h5{
   color: #fff;
 }
+>>>>>>> b5237fa6b168687babe3fc328643273293ddbbee

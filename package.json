@@ -39,5 +39,19 @@
       "version": "",
       "locator": "android"
     }
-  ]
+  ],
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoGnedy/SimpleCrossPlatformApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoGnedy/SimpleCrossPlatformApp/issues"
+  },
+  "homepage": "https://github.com/MoGnedy/SimpleCrossPlatformApp#readme"
 }

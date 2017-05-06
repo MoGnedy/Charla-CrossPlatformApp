@@ -37,7 +37,7 @@ app.post("/api/users",function(request,response){
   response.send({status:1});
     });
 
-});
+})
 
 app.post('/api/signup', function(request, response) {
   console.log(request.body);
@@ -65,17 +65,28 @@ response.send({status:1,userdata:res});
 });
 
 
-});
-
-
-
 app.get('*', function(request, response) {
   response.sendStatus(404);
 })
 //socket
-io.on('connection', function(client) {
-  Client=client;
+
+io.on('connection',function(client){
   console.log("connected", client.id);
+   client.on('message',function(msg){
+    console.log(msg);
+    messages.push(msg)
+    client.broadcast.emit("message",messages)
+    client.emit("message",messages)
+        console.log("message");
+
+
+  })
+  client.emit('message',messages)
+ 
+})
+// io.on('connection', function(client) {
+//   Client=client;
+//   console.log("connected", client.id);
 //   // client.broadcast.emit("message",messages)
 //   // client.broadcast.emit('user',users)
 //   // client.emit('user',users)
@@ -117,7 +128,7 @@ io.on('connection', function(client) {
 //     client.broadcast.emit("user", users)
 //     client.emit("user", users)
 //   })
-})
+// })
 
 //listing
 var url= 'mongodb://127.0.0.1:27017/chatdb';
@@ -140,4 +151,4 @@ Mydb=db;
 
 
 
-});
+})
