@@ -1,20 +1,23 @@
 /* Empty. Add your own CSS if you like */
-
+/* Empty. Add your own CSS if you like */
+/* Empty. Add your own CSS if you like */
 
 .homepage{
 background-image: url('../img/home.jpg');
 background-size: cover;
 background-position: center;
 }
+
 .overlay{
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0,0.6);
   text-align: center;
 }
+
 .overlay:before{
   content: "";
   display: inline-block;
@@ -22,45 +25,33 @@ background-position: center;
   vertical-align: middle;
   text-align: center;
 }
+
 .contents{
   vertical-align: middle;
   display: inline-block;
   text-align: center;
 }
+
 h1{
-  color:#fff;
+  color: #fff;
   text-align: center;
 }
+
 .homepage .item{
-  border:0;
+  border: 0;
 }
+
 .homepage .item-input{
-  text-align: left;
-  padding-left: 0;
+text-align: left;
+padding-left: 0;
 }
+
 .homepage .item-input span{
-  color: #fff;
+color: #fff;
 }
 
 .homepage input{
 background: transparent;
 color: #fff;
 border-bottom: 1px solid #fff;
-}
-.about h2,h3{
-	text-align: center;
-
-}
-.about{
-	 padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    
-}
-.popup-head{
-  background: #ef473a;
-}
-.popup-head h3,.popup-head h5{
-  color: #fff;
 }

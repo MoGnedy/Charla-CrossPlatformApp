@@ -1,9 +1,43 @@
-<ion-view>
-  <ion-content>
+<ion-view view-title="Sign up">
+  <ion-content class="homepage">
 
+  		<div class="overlay">
+  		<div class="contents">
+  		 <div class="list">
 
+  <form name="signupForm" ng-submit="submitted= true; signUp(signupForm.$valid)" novalidate="">
+    <input type="text" name="username" ng-model="user.username" placeholder="Username" required>
+    <p ng-if="signupForm.username.$error.required && submitted">Username is required</p>
 
+    <input type="text" name="lastName" ng-model="user.lastName" placeholder="Last Name" required>
+    <p ng-if="signupForm.fullname.$error.required && submitted">Last name is required</p>
 
+    <input type="text" name="firstName" ng-model="user.firstName" placeholder="First Name" required>
+    <p ng-if="signupForm.fullname.$error.required && submitted">First name is required</p>
+
+    <input type="email" name="email" ng-model="user.email" placeholder="Email" required>
+    <p ng-if="signupForm.email.$error.required && submitted">Email is required</p>
+    <p ng-if="signupForm.email.$error.email && submitted">Enter valid email</p>
+
+    
+
+    <input type="password" name="pw" ng-model="user.pw" ng-change="validetor.pwLen()" placeholder="Password" required>
+    <p ng-if="signupForm.pw.$error.required && submitted">Password is required</p>
+    <p ng-if="myerrors.pw_len && submitted">Password is too short</p>
+
+    <input type="password" name="re_pw" ng-model="re_pw" ng-change="validetor.match()" placeholder="Re-Type Password" required>
+    <p ng-if="signupForm.re_pw.$error.required && submitted">Please re-type your password</p>
+    <p ng-if="myerrors.re_pw && submitted">Passwords don't match</p>
+
+    <button class="button button-block button-positive">Sign Up</button>
+  </form>
+  		</div>
+		</div>
+  		</div>	
 
   </ion-content>
 </ion-view>
+
+
+
+
