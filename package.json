@@ -22,5 +22,11 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-device"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
+  ]
 }
