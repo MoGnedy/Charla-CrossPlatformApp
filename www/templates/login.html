@@ -1,5 +1,5 @@
-<ion-view  >
-<ion-content >
+<ion-view view-title="Register">
+<ion-content>
 <div ></div>
 <div>
 <form name="userLoginForm" ng-submit="userLogin(userLoginForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
@@ -15,14 +15,14 @@
       </label>
       <label class="item item-input item-floating-label">
 
-        <div class="card bg-assertive" ng-show="err">
+        <div class="card bg-assertive" ng-show="inerr">
                     <div class="item item-text-wrap" style="background: firebrick;">
-                        <p style="color: cornsilk;">{{errmsg}}</p>
+                        <p style="color: cornsilk;">{{inerrmsg}}</p>
                     </div>
                 </div>
 
 
-      <button class="button button-block button-balanced">
+      <button class="button button-block button-balanced" >
        Submit
      </button>
    </label>
