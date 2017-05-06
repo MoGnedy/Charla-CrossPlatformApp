@@ -1,8 +1,10 @@
 /* Empty. Add your own CSS if you like */
-.homePage{
-  background-image: url('../img/main.jpg');
-  background-size: cover;
-  background-position: center;
+
+
+.homepage{
+background-image: url('../img/home.jpg');
+background-size: cover;
+background-position: center;
 }
 .overlay{
   position: absolute;
@@ -39,11 +41,14 @@ h1{
 .homePage .item-input span{
   color: #fff;
 
+.homepage .item-input span{
+color: #fff;
 }
-.homePage input{
-  background: transparent;
-  color: #fff;
-  border-bottom:1px solid #fff;
+
+.homepage input{
+background: transparent;
+color: #fff;
+border-bottom: 1px solid #fff;
 }
 .popup-head{
   background: #ef473a;
