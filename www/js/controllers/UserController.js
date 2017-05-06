@@ -5,8 +5,9 @@ $scope.inerr = false;
 $scope.inerrmsg = "message";
 $scope.userLogin = function () {
   if($scope.user['email'] && $scope.user['password']){
-
-    if ( users.sendUserData($scope.user).length ){
+    $scope.userCheck = users.checkUserData($scope.user);
+    console.log($scope.userCheck);
+    if ( $scope.userCheck.length  ){
   $state.go('app.users');
   }else {
     $scope.err = true;
