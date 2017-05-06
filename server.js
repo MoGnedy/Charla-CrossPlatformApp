@@ -32,15 +32,17 @@ app.get('/', function(request, response) {
 app.post("/api/users",function(request,response){
     var users =  Mydb.collection('users').find().toArray(function(err,users){
 
-    response.send(users);
+  response.send(users);
   response.send({status:1});
     });
 
 });
 
 app.post('/api/signup', function(request, response) {
+  console.log(request.body);
   if(request.body.username && request.body.email && request.body.password)
  {
+
 
    Mydb.collection('users').save(request.body,function(err,res){
 
