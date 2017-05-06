@@ -11,25 +11,15 @@ angular.module('ChatApp').config(function($stateProvider) {
     templateUrl:"templates/home.html",
 
   })
-  .state('home.login',{
+  .state('login',{
     url:'/login',
-    views:{
-      "pageContent":{
-        templateUrl:"templates/login.html",
-        controller:"user",
-      },
-
-    }
+  
   })
-  .state('home.signup',{
+  .state('signup',{
     url:'/signup',
-    views:{
-      "pageContent":{
-        templateUrl:"templates/signup.html",
+     templateUrl:"templates/signup.html",
         controller:"user",
-      },
-
-    }
+      
   })
   .state('app.about',{
     url:'/about',
