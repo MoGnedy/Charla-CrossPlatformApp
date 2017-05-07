@@ -61,7 +61,8 @@ Mydb.collection('users').find({'email':request.body.email,'password':request.bod
 console.log(res);
 users.push(res[0]);
 // user_data = res;
-response.send({status:1,userdata:res[0]});
+response.send({status:1,userdata:res});
+});
 });
 
 
@@ -74,11 +75,12 @@ io.on('connection',function(client){
   console.log("connected", client.id);
    client.on('message',function(msg){
     console.log(msg);
-    messages.push(msg)
+    messages.push(msg);
     client.broadcast.emit("message",messages)
     client.emit("message",messages)
         console.log("message");
 
+        console.log("rowan");
 
   })
   client.emit('message',messages)
@@ -148,7 +150,4 @@ Mydb=db;
 
     console.log(err);
   }
-
-
-
 })

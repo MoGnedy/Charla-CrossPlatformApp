@@ -6,9 +6,32 @@
 
 
 </label>
-<textarea ng-keypress="updateEditor()" name="message"  ng-model="message.message" id="textar"> </textarea>
-  <button class="button button-balanced" ng-click="sendMessage()">
-  button-balanced
+<!-- 
+ <ul>
+    <li ng-repeat="msg in messages track by $index">{{msg}}</li>
+  </ul>
+ -->
+
+
+<ion-list>
+
+<ion-item class="item-thumbnail-left"  ng-repeat="msg in message track by $index">
+      {{msg}}
+  </ion-item>
+</ion-list>
+
+
+<textarea ng-keypress="updateEditor()" name="name"  ng-model="message.message" id="textar" > </textarea>
+  <button class="button button-balanced" ng-click="send()">
+  Send
 </button>
+<!-- <form novalidate  ng-submit="send()">
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="name" ng-model="message.message" class="form-control" rows="8" cols="80"></textarea>
+    </div>
+
+    <button  class="btn btn-primary">Send</button>
+  </form> -->
   </ion-content>
 </ion-view>

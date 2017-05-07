@@ -1,17 +1,21 @@
-angular.module('ChatApp').controller('chat', function($scope,users,$state,$timeout,$rootScope) {
-    $scope.message =[];
+angular.module('ChatApp').controller('chat', function($scope,$http,users,$state,$timeout,$rootScope) {
+	  $scope.message ={};
+  
+    socket.on('message',function(msgs){
+    $timeout(function(){
+
+        $scope.message=msgs;
+    })
+
+  })
 $scope.send = function(){
     console.log($scope.message);
-    // socket.emit('message',$scope.message);
-    $scope.message ='';
+   
+
+    socket.emit('message',$scope.message);
+    // $scope.message ='';
   }
-  // socket.on('message',function(msgs){
-  //   $timeout(function(){
-
-  //       $scope.messages=msgs;
-  //   })
-
-  // })
+ 
 
   $scope.sendMessage = function(){
   	console.log($scope.message);
