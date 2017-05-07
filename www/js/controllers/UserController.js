@@ -26,6 +26,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
           $ionicLoading.hide();
           $scope.dataresult = res.userdata[0];
           $rootScope.logedInUserData = res.userdata[0];
+          console.log($rootScope.logedInUserData.username);
           socket.emit('login', $rootScope.logedInUserData.username);
           socket.emit('user', $rootScope.logedInUserData.username);
           $state.go('app.users');
@@ -63,6 +64,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
     if (valid) {
       $scope.dataresult = users.regUserData($scope.user).then(function(res) {
         $scope.dataresult = res.data;
+        $rootScope.logedInUserData = $scope.user;
         if (res.status) {
           socket.emit('login', $rootScope.logedInUserData.username);
           socket.emit('user', $rootScope.logedInUserData.username);

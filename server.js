@@ -135,8 +135,7 @@ MongoClient.connect(url, function(err, db) {
     server.listen(3000, function() {
 
 
-  console.log('server is working');
-})
+    })
 
   } else {
 
