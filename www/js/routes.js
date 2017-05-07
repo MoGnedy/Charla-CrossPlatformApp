@@ -11,8 +11,8 @@ angular.module('ChatApp').config(function($stateProvider) {
       templateUrl: "templates/home.html",
 
 
-  })
- 
+    })
+
     .state('login', {
       url: '/login',
       templateUrl: "templates/login.html",
