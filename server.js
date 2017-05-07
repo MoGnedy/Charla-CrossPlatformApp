@@ -72,6 +72,7 @@ app.post('/api/login', function(request, response) {
       response.send({
         status: 0
       })
+
     }
 
   });
@@ -84,6 +85,8 @@ app.get('*', function(request, response) {
 //socket
 
 io.on('connection', function(client) {
+  console.log("Server is runing");
+  console.log(client.id);
   client.on('message', function(msg) {
     messages.push(msg)
     client.broadcast.emit("message", messages)
@@ -102,6 +105,7 @@ io.on('connection', function(client) {
   })
 
   client.on('login', function(user) {
+    console.log("userLogin");
     users[client.id] = user
     client.broadcast.emit("message", messages)
     client.emit("message", messages)
@@ -117,6 +121,18 @@ io.on('connection', function(client) {
   })
   client.on('logout', function(user) {
     delete users[client.id];
+    client.broadcast.emit("user", users)
+    client.emit("user", users)
+  })
+
+  client.on('offline', function(user) {
+    delete users[client.id];
+    client.broadcast.emit("user", users)
+    client.emit("user", users)
+  })
+
+  client.on('online', function(user) {
+    users[client.id] = user;
     client.broadcast.emit("user", users)
     client.emit("user", users)
   })

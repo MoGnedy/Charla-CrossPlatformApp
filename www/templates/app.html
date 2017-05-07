@@ -17,11 +17,20 @@
   <!-- Right menu -->
   <ion-side-menu side="right">
     <ion-list>
-      <ion-item ui-sref="app.about" menu-close>
-        About
+      <ion-item  menu-close>
+        Welcome {{logedInUserData.username}}
+      </ion-item>
+      <ion-item on-off menu-close>
+        {{online}}
+      </ion-item>
+      <ion-item ui-sref="app.users" menu-close>
+        Active Users
       </ion-item>
       <ion-item ui-sref="app.chat" menu-close>
-        Chat
+        Public Chat
+      </ion-item>
+      <ion-item ui-sref="app.about" menu-close>
+        About
       </ion-item>
       <ion-item log-out menu-close>
         Logout

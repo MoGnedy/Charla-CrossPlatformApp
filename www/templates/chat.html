@@ -1,7 +1,7 @@
 <ion-view>
   <ion-content>
 <label class="item item-input">
-  <span class="input-label" >Username</span>
+  <span class="input-label" >Public Chat</span>
   <!-- <input type="text" name="message"  ng-model="message"> -->
 
 
@@ -14,14 +14,14 @@
 
 
 <ion-list>
-
-<ion-item class="item-thumbnail-left"  ng-repeat="msg in message track by $index">
-      {{msg.username}}:{{msg.message}}
+<ion-item class="item-thumbnail-left"  ng-repeat="mess in messages track by $index">
+      {{mess}}
   </ion-item>
 </ion-list>
 
 
-<textarea ng-keypress="updateEditor()" name="name"  ng-model="message.message" id="textar" > </textarea>
+<textarea ng-keypress="updateEditor()" name="name"  ng-model="message[0]" id="textar" > </textarea>
+
   <button class="button button-balanced" ng-click="send()">
   Send
 </button>

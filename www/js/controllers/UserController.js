@@ -1,6 +1,7 @@
 angular.module('ChatApp').controller('user', function($scope, $state, users, $rootScope, $timeout, $ionicLoading) {
   $scope.user = {};
   $scope.myerrors = {};
+  $rootScope.messages = [];
   $scope.stopLoading = function() {
     $ionicLoading.hide();
     $state.go('app.about');
@@ -29,6 +30,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
           console.log($rootScope.logedInUserData.username);
           socket.emit('login', $rootScope.logedInUserData.username);
           socket.emit('user', $rootScope.logedInUserData.username);
+          $rootScope.online = "Go Offline";
           $state.go('app.users');
         } else {
           $ionicLoading.hide();
@@ -85,10 +87,31 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
     })
 
   })
+  socket.on('message', function(msgs) {
+    $timeout(function() {
+      $rootScope.messages = msgs;
+    })
+
+  })
 
   $rootScope.user_logout = function() {
     socket.emit('logout', $rootScope.logedInUserData.username);
-
   }
+
+
+  $rootScope.user_OnOff = function(){
+    if ($rootScope.online && $rootScope.online == "Go Offline"){
+      $rootScope.online = "Go Online";
+      socket.emit('offline', $rootScope.logedInUserData.username);
+    }else {
+      $rootScope.online = "Go Offline";
+      socket.emit('online', $rootScope.logedInUserData.username);
+    }
+  }
+
+
+
+
+
 
 });
