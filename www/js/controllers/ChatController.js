@@ -15,7 +15,13 @@ $scope.send = function(){
     socket.emit('message',$scope.message);
     // $scope.message ='';
   }
- 
+  // socket.on('message',function(msgs){
+  //   $timeout(function(){
+
+  //       $scope.messages=msgs;
+  //   })
+
+  // })
 
   $scope.sendMessage = function(){
   	console.log($scope.message);
