@@ -1,31 +1,31 @@
 <ion-view>
   <ion-content>
-<label class="item item-input">
+    <label class="item item-input">
   <span class="input-label" >private Chat with {{privateUserName}}</span>
   <!-- <input type="text" name="message"  ng-model="message"> -->
 
 
 </label>
-<!--
+    <!--
  <ul>
     <li ng-repeat="msg in messages track by $index">{{msg}}</li>
   </ul>
  -->
 
 
-<ion-list>
-<ion-item class="item-thumbnail-left"  ng-repeat="mess in privateMessages track by $index">
-      {{mess}}
-  </ion-item>
-</ion-list>
+    <ion-list id="privatemsgslist">
+      <ion-item class="item-thumbnail-left" ng-repeat="mess in privateMessages track by $index">
+        {{mess}}
+      </ion-item>
+    </ion-list>
 
 
-<textarea ng-keypress="updateEditor()" name="name"  ng-model="privateMessage[0]" id="textar" > </textarea>
+    <textarea ng-keypress="updateEditor()" name="privateMessageText" ng-model="privateMessage[0]" id="textar"> </textarea>
 
-  <button class="button button-balanced" ng-click="sendPrivate()">
-  Send
-</button>
-<!-- <form novalidate  ng-submit="send()">
+    <button class="button button-balanced" ng-click="sendPrivate()">
+    Send
+  </button>
+    <!-- <form novalidate  ng-submit="send()">
     <div class="form-group">
       <label>Message</label>
       <textarea name="name" ng-model="message.message" class="form-control" rows="8" cols="80"></textarea>

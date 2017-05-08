@@ -44,14 +44,11 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     },
     getPrivateMsgs: function(msgsData) {
       var def = $q.defer();
-      console.log(msgsData);
       $http({
         "url": "http://127.0.0.1:3000/api/getprivate",
         "method": "post",
         "data": msgsData
       }).then(function(res) {
-        console.log(res);
-        console.log(res.data);
         def.resolve(res.data);
       }, function(err) {
         def.reject(err.data);
@@ -73,7 +70,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     },
 
 
-   };
+  };
 
 
 })

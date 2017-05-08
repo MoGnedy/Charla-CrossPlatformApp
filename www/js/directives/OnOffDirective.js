@@ -5,7 +5,7 @@ angular.module('ChatApp').directive('onOff', function($rootScope, $state) {
         if ($rootScope.logedInUserData && $rootScope.logedInUserData.username) {
           $rootScope.user_OnOff();
         }
-        
+
       })
 
     }

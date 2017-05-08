@@ -10,13 +10,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
   $scope.stopSync = function() {
     $ionicLoading.hide();
   }
-  socket.on('privatemessage',function(msgs){
-	$timeout(function(){
-		console.log("privatemessage event in client userController");
-		console.log($rootScope.private_code);
-	$rootScope.user_privateMsg($rootScope.private_code);
-	})
-})
+
 
   $scope.validetor = {
 
@@ -32,16 +26,14 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
     if (valid) {
       users.checkUserData($scope.user).then(function(res) {
         if (res && res.userdata && res.userdata.length) {
-          // $ionicLoading.hide();
           $scope.dataresult = res.userdata[0];
           $rootScope.logedInUserData = res.userdata[0];
-          console.log($rootScope.logedInUserData.username);
           socket.emit('login', $rootScope.logedInUserData.username);
           socket.emit('user', $rootScope.logedInUserData.username);
           $rootScope.online = "Go Offline";
           $state.go('app.users');
         } else {
-          // $ionicLoading.hide();
+          console.log('login error');
         }
 
       });
@@ -76,6 +68,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
         $scope.dataresult = res.data;
         $rootScope.logedInUserData = $scope.user;
         if (res.status) {
+          $rootScope.online = "Go Offline";
           socket.emit('login', $rootScope.logedInUserData.username);
           socket.emit('user', $rootScope.logedInUserData.username);
           $state.go('app.users');
@@ -107,35 +100,33 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
   }
 
 
-  $rootScope.user_OnOff = function(){
-    if ($rootScope.online && $rootScope.online == "Go Offline"){
+  $rootScope.user_OnOff = function() {
+    if ($rootScope.online && $rootScope.online == "Go Offline") {
       $rootScope.online = "Go Online";
       socket.emit('offline', $rootScope.logedInUserData.username);
-    }else {
+    } else {
       $rootScope.online = "Go Offline";
       socket.emit('online', $rootScope.logedInUserData.username);
     }
   }
 
   $rootScope.user_privateMsg = function(private_code) {
-private_code={'private_code':private_code};
-$rootScope.privateMessages=[]
-  		users.getPrivateMsgs(private_code).then(function(res) {
-        console.log(res);
-  			if (res && res.msgsdata && res.msgsdata.length) {
-  				console.log(res.msgsdata);
+    private_code = {
+      'private_code': private_code
+    };
+    $rootScope.privateMessages = []
+    users.getPrivateMsgs(private_code).then(function(res) {
+      if (res && res.msgsdata && res.msgsdata.length) {
 
-for (var i in res.msgsdata) {
-    $rootScope.privateMessages.push(res.msgsdata[i].username +" : "+res.msgsdata[i].private_message)
-  }
+        for (var i in res.msgsdata) {
+          $rootScope.privateMessages.push(res.msgsdata[i].username + " : " + res.msgsdata[i].private_message)
+        }
 
-          console.log($rootScope.privateMessages);
-  			} else {
-  				console.log("didn't get any messages");
-  				// $ionicLoading.hide();
-  			}
+      } else {
+        console.log("no messages");
+      }
 
-  		});
+    });
 
 
   }

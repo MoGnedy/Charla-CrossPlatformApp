@@ -12,6 +12,7 @@ var privateMessages = [];
 var users = {};
 var Mydb;
 var Client;
+var Clients = [];
 var user_data;
 //middlewares
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
@@ -78,25 +79,6 @@ app.post('/api/login', function(request, response) {
   });
 });
 
-// app.post('/api/getprivate', function(request, response) {
-//   console.log(request.body);
-//   Mydb.collection('privatemsgs').find({
-//     'private_code': request.body.private_code
-//   }).toArray(function(err, res) {
-//     if (res.length) {
-//       response.send({
-//         status: 1,
-//         msgsdata: res
-//       });
-//     } else {
-//       response.send({
-//         status: 0
-//       })
-//
-//     }
-//
-//   });
-// });
 
 app.post('/api/getprivate', function(request, response) {
   if (request.body.private_code) {
@@ -108,15 +90,15 @@ app.post('/api/getprivate', function(request, response) {
           status: 1,
           msgsdata: res
         });
-      }else {
+      } else {
         response.send({
           status: 0
         })
       }
 
 
-})
-}
+    })
+  }
 })
 
 app.post('/api/saveprivate', function(request, response) {
@@ -159,14 +141,22 @@ io.on('connection', function(client) {
 
   client.on('disconnect', function() {
     delete users[client.id];
+    if (Clients[client.id]) {
+      delete Clients[client.id];
+    }
     client.broadcast.emit("user", users)
     client.emit("user", users)
 
   })
 
   client.on('login', function(user) {
-    console.log("userLogin");
+    console.log("userLogedIn");
     users[client.id] = user
+
+    Clients[client.id] = ({
+      'username': user,
+      'client': client
+    });
     client.broadcast.emit("message", messages)
     client.emit("message", messages)
     client.broadcast.emit("user", users)
@@ -197,11 +187,17 @@ io.on('connection', function(client) {
     client.emit("user", users)
   })
 
-  client.on('privatemessage', function(msg) {
-    console.log("privatemessage event in server");
-    client.broadcast.emit('privateMessage', privateMessages)
-    client.emit('privateMessage', privateMessages)
-    
+  client.on('privateMessage', function(messageData) {
+    var anotherUserName = messageData[0];
+    var anotherClientSocket;
+    for (var key in Clients) {
+      if (Clients[key].username == anotherUserName) {
+        anotherClientSocket = Clients[key].client
+      }
+    }
+    messageData = [messageData[2], messageData[1]]
+
+    anotherClientSocket.emit('privateMessage', messageData)
 
   })
 
