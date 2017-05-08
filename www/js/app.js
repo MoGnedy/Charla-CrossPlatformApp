@@ -13,6 +13,8 @@ angular.module('ChatApp', ['ionic'])
     if (localUserData) {
       $rootScope.logedInUserData = localUserData;
       $rootScope.online = "Go Offline";
+      socket.emit('login', $rootScope.logedInUserData.username);
+      socket.emit('user', $rootScope.logedInUserData.username);
       $state.go('app.users');
     } else {
       $state.go('home');
