@@ -8,6 +8,7 @@ const MongoClient = mongodb.MongoClient
 
 
 var messages = [];
+var privateMessages = [];
 var users = {};
 var Mydb;
 var Client;
@@ -20,12 +21,11 @@ app.use(bodyParser.json())
 //routing
 app.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,POST');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   next();
-
 })
+
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/index.html');
 })
@@ -77,6 +77,66 @@ app.post('/api/login', function(request, response) {
 
   });
 });
+
+// app.post('/api/getprivate', function(request, response) {
+//   console.log(request.body);
+//   Mydb.collection('privatemsgs').find({
+//     'private_code': request.body.private_code
+//   }).toArray(function(err, res) {
+//     if (res.length) {
+//       response.send({
+//         status: 1,
+//         msgsdata: res
+//       });
+//     } else {
+//       response.send({
+//         status: 0
+//       })
+//
+//     }
+//
+//   });
+// });
+
+app.post('/api/getprivate', function(request, response) {
+  if (request.body.private_code) {
+    Mydb.collection('privatemsgs').find({
+      'private_code': request.body.private_code
+    }).toArray(function(err, res) {
+      if (res.length) {
+        response.send({
+          status: 1,
+          msgsdata: res
+        });
+      }else {
+        response.send({
+          status: 0
+        })
+      }
+
+
+})
+}
+})
+
+app.post('/api/saveprivate', function(request, response) {
+  if (request.body.private_code) {
+
+    Mydb.collection('privatemsgs').save(request.body, function(err, res) {
+
+    });
+    response.send({
+      status: 1
+    });
+  } else {
+    response.send({
+      status: 0
+    });
+  }
+
+})
+
+
 
 
 app.get('*', function(request, response) {
@@ -137,7 +197,17 @@ io.on('connection', function(client) {
     client.emit("user", users)
   })
 
+  client.on('privatemessage', function(msg) {
+    console.log("privatemessage event in server");
+    client.broadcast.emit('privateMessage', privateMessages)
+    client.emit('privateMessage', privateMessages)
+    
+
+  })
+
 })
+
+
 
 
 //listing

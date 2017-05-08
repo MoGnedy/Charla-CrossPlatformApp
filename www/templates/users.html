@@ -2,7 +2,7 @@
   <ion-content>
 <ion-list>
   <ion-item class="item-divider">Online Users</ion-item>
-    <ion-item ng-repeat="user in users track by $index" ng-if="user != logedInUserData.username">
+    <ion-item  ng-repeat="user in users track by $index" ng-if="user != logedInUserData.username" id="{{user}}" private-msg  >
       {{user}}
     </ion-item>
 

@@ -55,5 +55,15 @@ angular.module('ChatApp').config(function($stateProvider) {
 
       }
     })
+    .state('app.privatemsgs', {
+      url: '/privatemsgs',
+      views: {
+        "pageContent": {
+          templateUrl: "templates/privatemsgs.html",
+          controller: "chat",
+        },
+
+      }
+    })
 
 })
