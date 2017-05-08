@@ -35,27 +35,29 @@ angular.module('ChatApp').controller('chat', function($scope, $http, users, $sta
 
 
   $scope.sendPrivate = function() {
-    var privateMessageData = {
-      'private_code': $rootScope.private_code,
-      'username': $rootScope.logedInUserData.username,
-      'private_message': $scope.privateMessage[0]
-    };
-    var messageData = [$rootScope.privateUserName, $scope.privateMessage[0], $rootScope.logedInUserData.username];
+    if ($scope.privateMessage[0] && $scope.privateMessage[0] != '') {
+      var privateMessageData = {
+        'private_code': $rootScope.private_code,
+        'username': $rootScope.logedInUserData.username,
+        'private_message': $scope.privateMessage[0]
+      };
+      var messageData = [$rootScope.privateUserName, $scope.privateMessage[0], $rootScope.logedInUserData.username];
 
-    users.savePrivateMsg(privateMessageData).then(function(res) {
-      if (res && res.status) {
-        if ($scope.privateMessage != []) {
-          $rootScope.privateMessages.push($rootScope.logedInUserData.username + " : " + $scope.privateMessage[0])
-          $scope.privateMessage = [];
-          socket.emit('privateMessage', messageData);
+      users.savePrivateMsg(privateMessageData).then(function(res) {
+        if (res && res.status) {
+          if ($scope.privateMessage != []) {
+            $rootScope.privateMessages.push($rootScope.logedInUserData.username + " : " + $scope.privateMessage[0])
+            $scope.privateMessage = [];
+            socket.emit('privateMessage', messageData);
 
+          }
+        } else {
+          console.log("send error");
         }
-      } else {
-        console.log("send error");
-      }
 
-    });
 
+      });
+    }
   }
 
 
