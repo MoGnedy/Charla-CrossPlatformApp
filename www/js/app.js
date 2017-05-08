@@ -8,8 +8,15 @@ var socket = io("http://127.0.0.1:3000");
 angular.module('ChatApp', ['ionic'])
 
 
-  .run(function($ionicPlatform, $state) {
-    $state.go('home');
+  .run(function($ionicPlatform, $state, $rootScope) {
+    var localUserData = JSON.parse(localStorage.getItem("CharlaData"), true);
+    if (localUserData) {
+      $rootScope.logedInUserData = localUserData;
+      $rootScope.online = "Go Offline";
+      $state.go('app.users');
+    } else {
+      $state.go('home');
+    }
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

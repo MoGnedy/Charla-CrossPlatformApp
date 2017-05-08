@@ -2,15 +2,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
   $scope.user = {};
   $scope.myerrors = {};
   $rootScope.messages = [];
-
-  $scope.stopLoading = function() {
-    $ionicLoading.hide();
-    $state.go('app.about');
-  }
-  $scope.stopSync = function() {
-    $ionicLoading.hide();
-  }
-
+  $scope.remember = [];
 
   $scope.validetor = {
 
@@ -32,6 +24,14 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
           socket.emit('user', $rootScope.logedInUserData.username);
           $rootScope.online = "Go Offline";
           $state.go('app.users');
+          if ($scope.remember.check) {
+            $scope.localUserData = JSON.stringify({
+              'id': $rootScope.logedInUserData._id,
+              'username': $rootScope.logedInUserData.username,
+              'email': $rootScope.logedInUserData.email
+            });
+            localStorage.setItem("CharlaData", $scope.localUserData);
+          }
         } else {
           console.log('login error');
         }
@@ -96,6 +96,7 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
   })
 
   $rootScope.user_logout = function() {
+    localStorage.removeItem('CharlaData');
     socket.emit('logout', $rootScope.logedInUserData.username);
   }
 
