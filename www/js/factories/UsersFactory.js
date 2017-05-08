@@ -4,7 +4,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     checkUserData: function(userData) {
       var def = $q.defer();
       $http({
-        "url": "http://127.0.0.1:3000/api/login",
+        "url": "http://"+serverIp+"/api/login",
         "method": "post",
         "data": userData
       }).then(function(res) {
@@ -18,7 +18,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     regUserData: function(userData) {
       var def = $q.defer();
       $http({
-        "url": "http://127.0.0.1:3000/api/signup",
+        "url": "http://"+serverIp+"/api/signup",
         "method": "post",
         "data": userData
       }).then(function(res) {
@@ -32,7 +32,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     getAllUsers: function() {
       var def = $q.defer();
       $http({
-        "url": "http://127.0.0.1:3000/api/users",
+        "url": "http://"+serverIp+"/api/users",
         "method": "get",
       }).then(function(res) {
         def.resolve(res.data);
@@ -45,7 +45,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     getPrivateMsgs: function(msgsData) {
       var def = $q.defer();
       $http({
-        "url": "http://127.0.0.1:3000/api/getprivate",
+        "url": "http://"+serverIp+"/api/getprivate",
         "method": "post",
         "data": msgsData
       }).then(function(res) {
@@ -58,7 +58,7 @@ angular.module('ChatApp').factory("users", function($http, $q, $rootScope) {
     savePrivateMsg: function(msgsData) {
       var def = $q.defer();
       $http({
-        "url": "http://127.0.0.1:3000/api/saveprivate",
+        "url": "http://"+serverIp+"/api/saveprivate",
         "method": "post",
         "data": msgsData
       }).then(function(res) {
