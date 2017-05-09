@@ -46,11 +46,11 @@ angular.module('ChatApp').controller('chat', function($scope, $http, users, $sta
       users.savePrivateMsg(privateMessageData).then(function(res) {
         if (res && res.status) {
           if ($scope.privateMessage != []) {
-            $rootScope.privateMessages.push($rootScope.logedInUserData.username + " : " + $scope.privateMessage[0])
-            $scope.privateMessage = [];
-            socket.emit('privateMessage', messageData);
 
+            socket.emit('privateMessage', messageData);
           }
+          $rootScope.privateMessages.push($rootScope.logedInUserData.username + " : " + $scope.privateMessage[0])
+          $scope.privateMessage = [];
         } else {
           console.log("send error");
         }
