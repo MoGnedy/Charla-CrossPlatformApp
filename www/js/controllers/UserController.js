@@ -24,6 +24,13 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
           socket.emit('user', $rootScope.logedInUserData.username);
           $rootScope.online = "Go Offline";
           $state.go('app.users');
+          cordova.plugins.notification.local.schedule({
+          id: 10,
+          title: "Charla",
+          text: "Welcom "+$rootScope.logedInUserData.username,
+          at: Date.now(),
+          data: { meetingId:"#123FG8" }
+          });
           if ($scope.remember.check) {
             $scope.localUserData = JSON.stringify({
               'id': $rootScope.logedInUserData._id,

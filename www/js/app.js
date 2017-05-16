@@ -33,6 +33,17 @@ angular.module('ChatApp', ['ionic'])
 
         //push notification
 
+
+        cordova.plugins.notification.local.schedule({
+        id: 10,
+        title: "Charla",
+        text: "Welcome to Charla",
+        at: Date.now(),
+        data: { meetingId:"#123FG8" }
+        });
+
+
+
         var push = PushNotification.init({
           android: {
             senderID: "287432877293"
