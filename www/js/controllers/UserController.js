@@ -140,6 +140,22 @@ angular.module('ChatApp').controller('user', function($scope, $state, users, $ro
   }
 
 
+  socket.on('privateMessage', function(messageData) {
+
+      cordova.plugins.notification.local.schedule({
+        id: 11,
+        title: "Charla With " + messageData[0],
+        text: messageData[1],
+        at: Date.now(),
+        data: {
+          id: messageData[0]
+        }
+      });
+
+  })
+
+
+
 
 
 

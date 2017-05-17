@@ -195,9 +195,14 @@ io.on('connection', function(client) {
         anotherClientSocket = Clients[key].client
       }
     }
+
+    if (anotherClientSocket){
     messageData = [messageData[2], messageData[1]]
 
     anotherClientSocket.emit('privateMessage', messageData)
+  }else{
+    console.log('User is not connected');
+  }
 
   })
 

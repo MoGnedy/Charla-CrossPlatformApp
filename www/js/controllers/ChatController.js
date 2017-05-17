@@ -15,6 +15,16 @@ angular.module('ChatApp').controller('chat', function($scope, $http, users, $sta
       })
     }
 
+    cordova.plugins.notification.local.schedule({
+      id: 11,
+      title: "Charla With " + messageData[0],
+      text: messageData[1],
+      at: Date.now(),
+      data: {
+        id: messageData[0]
+      }
+    });
+    
   })
   $scope.send = function() {
     if ($scope.message && $scope.message != '') {
